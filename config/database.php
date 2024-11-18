@@ -29,9 +29,9 @@ return [
     |
     */
 
-    'conections' => [
+    'connections' => [
 
-        'sqlte' => [
+        'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DB_URL'),
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
@@ -42,7 +42,7 @@ return [
             'synchronous' => null,
         ],
 
-        'msql' => [
+        'mysql' => [
             'driver' => 'mysql',
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -62,7 +62,7 @@ return [
             ]) : [],
         ],
 
-        'mariab' => [
+        'mariadb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -82,7 +82,7 @@ return [
             ]) : [],
         ],
 
-        'pgql' => [
+        'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -97,7 +97,7 @@ return [
             'sslmode' => 'prefer',
         ],
 
-        'sqlrv' => [
+        'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', 'localhost'),
@@ -125,7 +125,7 @@ return [
     |
     */
 
-    'migration' => [
+    'migrations' => [
         'table' => 'migrations',
         'update_date_on_publish' => true,
     ],

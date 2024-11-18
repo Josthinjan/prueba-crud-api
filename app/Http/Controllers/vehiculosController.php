@@ -4,53 +4,53 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Vehiculos;
+use App\Models\vehiculo;
 
-class vehiculossController extends Controller
+class vehiculosController extends Controller
 {
 
-    //funcion index para buscar todos los vehiculos
+    //funcion index para buscar todos los vehiculo
     public function index()
     {
         try {
-            $vehiculos = vehiculos::all();
-            return response()->json(['vehiculos' => $vehiculos], 200);
+            $vehiculo = vehiculo::all();
+            return response()->json(['vehiculo' => $vehiculo], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Error al obtener los vehiculos: ' . $e->getMessage()], 500);
+            return response()->json(['error' => 'Error al obtener los vehiculo: ' . $e->getMessage()], 500);
         }
     }
 
     //funcion para guardar un dato en la bd
     public function store(Request $request){
         try {
-            // Crear una nueva instancia del modelo vehiculos
-            $vehiculos = new vehiculos();
-            $vehiculos->tipo = $request->tipo;
-            $vehiculos->descripcion = $request->descripcion;
+            // Crear una nueva instancia del modelo vehiculo
+            $vehiculo = new vehiculo();
+            $vehiculo->tipo = $request->tipo;
+            $vehiculo->descripcion = $request->descripcion;
     
-            // Guardar el vehiculos en la base de datos
-            $vehiculos->save();
+            // Guardar el vehiculo en la base de datos
+            $vehiculo->save();
     
-            // Devolver la respuesta con los datos del vehiculos creado
-            return response()->json(['vehiculos' => $vehiculos], 201);
+            // Devolver la respuesta con los datos del vehiculo creado
+            return response()->json(['vehiculo' => $vehiculo], 201);
         } catch (\Exception $e) {
             // Manejo de excepciones, si algo falla durante el proceso de creación
-            return response()->json(['error' => 'Error al guardar el vehiculos: ' . $e->getMessage()], 500);
+            return response()->json(['error' => 'Error al guardar el vehiculo: ' . $e->getMessage()], 500);
         }
     }
 
     //funcion para buscar un solo registro
         public function show($id){
             try {
-                $vehiculos = vehiculos::find($id);
+                $vehiculo = vehiculo::find($id);
         
-                if ($vehiculos) {
-                    return response()->json(['vehiculos' => $vehiculos], 200);
+                if ($vehiculo) {
+                    return response()->json(['vehiculo' => $vehiculo], 200);
                 } else {
-                    return response()->json(['error' => 'Vehiculos no encontrado'], 404);
+                    return response()->json(['error' => 'vehiculo no encontrado'], 404);
                 }
             } catch (\Exception $e) {
-                return response()->json(['error' => 'Error al obtener el vehiculos: ' . $e->getMessage()], 500);
+                return response()->json(['error' => 'Error al obtener el vehiculo: ' . $e->getMessage()], 500);
             }   
         }
 
@@ -58,24 +58,24 @@ class vehiculossController extends Controller
     public function update(Request $request, $id)
     {
         try {
-        // Buscar el vehiculos por su ID
-        $vehiculos = vehiculos::find($id);
+        // Buscar el vehiculo por su ID
+        $vehiculo = vehiculo::find($id);
 
-        if ($vehiculos) {
-            // Actualizar los datos del vehiculos
-            $vehiculos->tipo = $request->tipo;
-            $vehiculos->descripcion = $request->descripcion;
+        if ($vehiculo) {
+            // Actualizar los datos del vehiculo
+            $vehiculo->tipo = $request->tipo;
+            $vehiculo->descripcion = $request->descripcion;
 
             // Guardar los cambios en la base de datos
-            $vehiculos->save();
+            $vehiculo->save();
 
-            // Devolver la respuesta con los datos del vehiculos actualizado
-            return response()->json(['vehiculos' => $vehiculos], 200);
+            // Devolver la respuesta con los datos del vehiculo actualizado
+            return response()->json(['vehiculo' => $vehiculo], 200);
         } else {
-            return response()->json(['error' => 'vehiculos no encontrado'], 404);
+            return response()->json(['error' => 'vehiculo no encontrado'], 404);
         }
     } catch (\Exception $e) {
-        return response()->json(['error' => 'Error al actualizar el vehiculos: ' . $e->getMessage()], 500);
+        return response()->json(['error' => 'Error al actualizar el vehiculo: ' . $e->getMessage()], 500);
     }
 
 }
@@ -84,20 +84,20 @@ class vehiculossController extends Controller
 public function destroy($id)
 {
     try {
-        // Buscar el vehiculos por su ID
-        $vehiculos = vehiculos::find($id);
+        // Buscar el vehiculo por su ID
+        $vehiculo = vehiculo::find($id);
 
-        if ($vehiculos) {
-            // Eliminar el vehiculos de la base de datos
-            $vehiculos->delete();
+        if ($vehiculo) {
+            // Eliminar el vehiculo de la base de datos
+            $vehiculo->delete();
 
             // Devolver la respuesta con el mensaje de éxito
-            return response()->json(['message' => 'vehiculos eliminado con éxito'], 200);
+            return response()->json(['message' => 'vehiculo eliminado con éxito'], 200);
         } else {
-            return response()->json(['error' => 'vehiculos no encontrado'], 404);
+            return response()->json(['error' => 'vehiculo no encontrado'], 404);
         }
     } catch (\Exception $e) {
-        return response()->json(['error' => 'Error al eliminar el vehiculos: ' . $e->getMessage()], 500);
+        return response()->json(['error' => 'Error al eliminar el vehiculo: ' . $e->getMessage()], 500);
     }
 }
 
@@ -106,22 +106,22 @@ public function patch(Request $request, $id)
 {
     try {
         // Buscar el vehículo por su ID
-        $vehiculos = Vehiculos::find($id);
+        $vehiculo = vehiculo::find($id);
 
-        if ($vehiculos) {
+        if ($vehiculo) {
             // Actualizar los datos del vehículo con los valores proporcionados en la solicitud
             if ($request->has('tipo')) {
-                $vehiculos->tipo = $request->tipo;
+                $vehiculo->tipo = $request->tipo;
             }
             if ($request->has('descripcion')) {
-                $vehiculos->descripcion = $request->descripcion;
+                $vehiculo->descripcion = $request->descripcion;
             }
 
             // Guardar los cambios en la base de datos
-            $vehiculos->save();
+            $vehiculo->save();
 
             // Devolver la respuesta con los datos del vehículo actualizado
-            return response()->json(['vehiculos' => $vehiculos], 200);
+            return response()->json(['vehiculo' => $vehiculo], 200);
         } else {
             return response()->json(['error' => 'Vehículo no encontrado'], 404);
         }
